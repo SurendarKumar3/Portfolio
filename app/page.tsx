@@ -1,43 +1,54 @@
-'use client'
+"use client";
+import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail, MapPin, Download, Sparkles, Code2, BrainCircuit, Cloud, Layers3, ExternalLink, Menu, X, Award, GraduationCap, Terminal, Send, BriefcaseBusiness, Cpu, ShieldCheck, Pencil, Save, RotateCcw, Plus, Trash2, Database, Globe, Zap } from "lucide-react";
+import initialContent from "@/config/portfolio-content.json";
 
-import { useState } from 'react'
-import { Header } from '@/components/Header'
-import { ThemeToggle } from '@/components/ThemeToggle'
-import { SplashScreen } from '@/components/SplashScreen'
-import { HeroSection } from '@/components/HeroSection'
-import { AboutSection } from '@/components/AboutSection'
-import { TabbedResumeSection } from '@/components/TabbedResumeSection'
-import { SkillsSection } from '@/components/SkillsSection'
-import { ExperienceSection } from '@/components/ExperienceSection'
-import { ProjectsSection } from '@/components/ProjectsSection'
-import { StatsSection } from '@/components/StatsSection'
-import { CertificationsSection } from '@/components/CertificationsSection'
-import { HireMeSection } from '@/components/HireMeSection'
-import { ContactSection } from '@/components/ContactSection'
-import { Footer } from '@/components/Footer'
+type Content = typeof initialContent;
+const reveal = { hidden:{opacity:0,y:25}, visible:{opacity:1,y:0} };
+const nav=[["About","#about"],["Skills","#skills"],["Experience","#experience"],["Projects","#projects"],["Education","#education"],["Achievements","#achievements"],["Contact","#contact"]];
+const clone=(v:any)=>JSON.parse(JSON.stringify(v));
 
-export default function Home() {
-  // Set to false to disable splash screen
-  const [showSplash, setShowSplash] = useState(false) // Changed to false by default
-
-  return (
-    <>
-      {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
-      <div className="min-h-screen">
-        <Header />
-        <ThemeToggle />
-        <main>
-          <HeroSection />
-          <AboutSection />
-          <TabbedResumeSection />
-          <StatsSection />
-          <ProjectsSection />
-          <CertificationsSection />
-          <HireMeSection />
-          <ContactSection />
-        </main>
-        <Footer />
-      </div>
-    </>
-  )
+export default function Home(){
+ const [data,setData]=useState<Content>(initialContent);
+ const [menu,setMenu]=useState(false),[filter,setFilter]=useState("All"),[editor,setEditor]=useState(false),[draft,setDraft]=useState(""),[error,setError]=useState("");
+ useEffect(()=>{try{const saved=localStorage.getItem("surendar-portfolio-content");if(saved)setData(JSON.parse(saved));}catch{}},[]);
+ const projects=(data as any).projects||[];
+ const categories=["All",...Array.from(new Set(projects.map((p:any)=>p.category||"Other")) as Set<string>)];
+ const visible=projects.filter((p:any)=>filter==="All"||p.category===filter);
+ function openEditor(){setDraft(JSON.stringify(data,null,2));setError("");setEditor(true)}
+ function saveEditor(){try{const parsed=JSON.parse(draft);if(!parsed.personal||!Array.isArray(parsed.projects))throw new Error("Keep personal and projects fields in the JSON.");setData(parsed);localStorage.setItem("surendar-portfolio-content",JSON.stringify(parsed));setEditor(false);setError("");}catch(e:any){setError("Could not save: "+e.message)}}
+ function resetContent(){localStorage.removeItem("surendar-portfolio-content");setData(initialContent);setDraft(JSON.stringify(initialContent,null,2));setError("");}
+ return <main>
+  <div className="ambient ambient-one"/><div className="ambient ambient-two"/>
+  <header className="topbar"><a className="brand" href="#home"><span className="brand-mark">S</span><span>surendar<span className="brand-dot">.</span></span></a>
+   <nav className={menu?"nav-links open":"nav-links"}>{nav.map(([label,href])=><a key={label} href={href} onClick={()=>setMenu(false)}>{label}</a>)}</nav>
+   <a className="nav-cta" href={`mailto:${data.personal.email}`}>Let&apos;s talk <ArrowUpRight size={15}/></a><button className="menu-button" onClick={()=>setMenu(!menu)} aria-label="Toggle navigation">{menu?<X/>:<Menu/>}</button>
+  </header>
+  <section className="hero section-wrap" id="home">
+   <div className="hero-copy"><motion.div initial="hidden" animate="visible" variants={reveal} transition={{duration:.6}} className="eyebrow"><span className="pulse-dot"/> SOFTWARE DEVELOPER <span className="eyebrow-line"/></motion.div>
+    <motion.h1 initial="hidden" animate="visible" variants={reveal} transition={{delay:.1}}>Software<br/><span className="gradient-text">Developer</span><br/>building impactful<br/>digital solutions<span className="accent">.</span></motion.h1>
+    <motion.p className="hero-description" initial="hidden" animate="visible" variants={reveal} transition={{delay:.2}}><strong>{data.personal.name}</strong><br/>{data.personal.title}</motion.p>
+    <p className="hero-summary">{data.summary}</p>
+    <div className="hero-actions"><a className="button button-primary" href="#projects">Explore my work <ArrowUpRight size={17}/></a><a className="button button-ghost" href={data.personal.resume} target="_blank"><Download size={16}/> Download résumé</a></div>
+    <div className="social-row"><a href={data.personal.github} target="_blank" rel="noreferrer"><Github size={17}/> GitHub</a><a href={data.personal.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17}/> LinkedIn</a><a href={`tel:${data.personal.phone}`}><BriefcaseBusiness size={16}/> {data.personal.phone}</a><a href={`mailto:${data.personal.email}`}><Mail size={17}/> Email</a></div>
+   </div>
+   <motion.div className="hero-visual" initial={{opacity:0,scale:.9}} animate={{opacity:1,scale:1}} transition={{duration:.9}}><div className="orbit orbit-a"/><div className="orbit orbit-b"/><div className="orbit orbit-c"/><div className="profile-frame"><div className="profile-image"><Image src="/profile.jpg" alt="Surendar Kumar portrait" fill priority sizes="(max-width: 800px) 75vw, 380px"/></div></div>
+    <div className="float-card card-code"><Code2 size={17}/><span>Engineering<br/><b>Scalable applications</b></span></div><div className="float-card card-ai"><Sparkles size={17}/><span>Exploring<br/><b>Generative AI</b></span></div><div className="visual-caption"><span className="caption-line"/> DEVELOPER · BUILDER · PROBLEM SOLVER</div>
+   </motion.div><a className="scroll-cue" href="#about"><span>SCROLL TO DISCOVER</span><ArrowDown size={15}/></a>
+  </section>
+  <section className="intro-strip"><div className="strip-inner"><span>FULL-STACK ENGINEERING</span><i>âœ³</i><span>ANDROID DEVELOPMENT</span><i>âœ³</i><span>AI & MACHINE LEARNING</span><i>âœ³</i><span>CLOUD TECHNOLOGIES</span></div></section>
+  <section className="content-section section-wrap" id="about"><div className="section-heading"><span className="section-kicker">01 / PROFILE</span><h2>Building with purpose.<br/><span className="muted-heading">Learning without limits.</span></h2></div><div className="about-grid"><motion.div className="about-text glass-card" variants={reveal} initial="hidden" whileInView="visible" viewport={{once:true}}><div className="mini-icon"><BrainCircuit/></div><h3>Professional summary</h3><p>{data.summary}</p><div className="location-line"><MapPin size={15}/>{data.personal.location}</div></motion.div><div className="about-side"><div className="stat-card"><span className="stat-number">9.0<span>/10</span></span><span className="stat-label">B.E. CGPA</span><span className="stat-glow"/></div><div className="stat-card"><span className="stat-number">13656</span><span className="stat-label">GATE 2026 CSE · ALL INDIA RANK</span><span className="stat-glow"/></div></div></div></section>
+  <section className="content-section section-wrap" id="skills"><div className="section-heading"><span className="section-kicker">02 / TECH STACK</span><h2>My engineering<br/><span className="muted-heading">toolkit.</span></h2><p className="section-subtitle">Technologies and tools used to design, build and ship practical solutions.</p></div><div className="skill-groups">{data.skills.map((group:any,i:number)=><motion.div className="skill-card glass-card" key={group.category} variants={reveal} initial="hidden" whileInView="visible" viewport={{once:true}} transition={{delay:i*.06}}><div className="skill-card-top"><span className="skill-index">0{i+1}</span>{[<Terminal key="a"/>,<Layers3 key="b"/>,<Code2 key="c"/>,<Cpu key="d"/>,<Cloud key="e"/>,<Database key="f"/>,<BrainCircuit key="g"/>][i%7]}</div><h3>{group.category}</h3><div className="skill-tags">{group.items.map((item:string)=><span key={item}>{item}</span>)}</div></motion.div>)}</div></section>
+  <section className="content-section section-wrap" id="experience"><div className="section-heading"><span className="section-kicker">03 / PROFESSIONAL EXPERIENCE</span><h2>Turning knowledge<br/><span className="muted-heading">into practice.</span></h2></div>{data.experience.map((job:any,i:number)=><motion.article className="experience-card glass-card" key={job.role+job.company} variants={reveal} initial="hidden" whileInView="visible" viewport={{once:true}}><div className="experience-top"><div className="mini-icon"><BriefcaseBusiness/></div><div><h3>{job.role}</h3><p>{job.company} · {job.location}</p></div><span className="experience-date">{job.date}</span></div><div className="project-tags">{job.stack.map((s:string)=><span key={s}>{s}</span>)}</div><ul className="detail-list">{job.bullets.map((b:string)=><li key={b}>{b}</li>)}</ul></motion.article>)}</section>
+  <section className="content-section section-wrap" id="projects"><div className="project-heading"><div className="section-heading"><span className="section-kicker">04 / SELECTED WORK</span><h2>Projects that solve<br/><span className="gradient-text">real problems.</span></h2></div><p className="section-subtitle">A closer look at applications, platforms and systems I've developed.</p></div><div className="filter-row">{categories.map((c:string)=><button key={c} className={filter===c?"filter active":"filter"} onClick={()=>setFilter(c)}>{c}</button>)}</div><div className="project-grid">{visible.map((p:any,i:number)=><motion.article className="project-card glass-card" key={p.name} layout variants={reveal} initial="hidden" whileInView="visible" viewport={{once:true}} transition={{delay:i*.05}}><div className={`project-art art-${i%4}`}><span className="project-art-number">0{i+1}</span><div className="project-art-icon">{i%4===0?<BrainCircuit/>:i%4===1?<Layers3/>:i%4===2?<ShieldCheck/>:<Code2/>}</div><span className="project-date">{p.date}</span></div><div className="project-body"><div className="project-title-row"><div><h3>{p.name}</h3><small>{p.subtitle}</small></div>{p.github&&<a href={p.github} target="_blank" rel="noreferrer" aria-label="GitHub"><ArrowUpRight/></a>}</div><p>{p.description}</p><div className="project-tags">{p.technologies.map((t:string)=><span key={t}>{t}</span>)}</div><div className="project-links">{p.github&&<a href={p.github} target="_blank" rel="noreferrer"><Github size={15}/> Source code</a>}{p.demo&&<a href={p.demo} target="_blank" rel="noreferrer"><ExternalLink size={15}/> Live demo</a>}</div></div></motion.article>)}</div></section>
+  <section className="content-section section-wrap" id="education"><div className="section-heading"><span className="section-kicker">05 / EDUCATION</span><h2>Academic<br/><span className="muted-heading">foundations.</span></h2></div><div className="education-grid">{data.education.map((e:any,i:number)=><motion.article className="education-card glass-card" key={e.institution} variants={reveal} initial="hidden" whileInView="visible" viewport={{once:true}} transition={{delay:i*.05}}><div className="education-icon"><GraduationCap/></div><span className="timeline-date">{e.date}</span><h3>{e.degree}</h3><p>{e.institution}</p>{e.result&&<b>{e.result}</b>}</motion.article>)}</div></section>
+  <section className="content-section section-wrap" id="certifications"><div className="section-heading"><span className="section-kicker">06 / CONTINUOUS LEARNING</span><h2>Certifications &<br/><span className="muted-heading">credentials.</span></h2></div><div className="cert-grid">{data.certifications.map((c:any,i:number)=><div className="cert-card glass-card" key={c.name}><span className="cert-icon"><Award/></span><span className="cert-info"><b>{c.name}</b><small>{c.issuer}{c.date?` · ${c.date}`:""}</small></span></div>)}</div></section>
+  <section className="content-section section-wrap" id="achievements"><div className="section-heading"><span className="section-kicker">07 / RECOGNITION</span><h2>Milestones &<br/><span className="muted-heading">achievements.</span></h2></div><div className="achievement-grid">{data.achievements.map((a:any)=><div className="achievement-card glass-card" key={a.title}><div className="mini-icon"><Zap/></div><h3>{a.title}</h3><p>{a.detail}</p></div>)}</div></section>
+  <section className="contact-section section-wrap" id="contact"><div className="contact-panel"><div className="contact-orb"/><span className="section-kicker">08 / LET'S CONNECT</span><h2>Let's build something<br/><span className="gradient-text">meaningful.</span></h2><p>Interested in collaboration, engineering opportunities or discussing an interesting idea? I'd love to hear from you.</p><div className="hero-actions contact-actions"><a className="button button-primary" href={`mailto:${data.personal.email}?subject=Let's%20connect`}><Send size={16}/> Send an email</a><a className="button button-ghost" href={`tel:${data.personal.phone}`}>Call me</a></div><div className="contact-details"><span><Mail size={15}/>{data.personal.email}</span><span><MapPin size={15}/>{data.personal.location}</span><span>{data.personal.phone}</span></div></div></section>
+  <footer className="footer"><a className="brand" href="#home"><span className="brand-mark">S</span><span>surendar<span className="brand-dot">.</span></span></a><span>Designed & built with curiosity · © {new Date().getFullYear()} {data.personal.name}</span><div className="footer-links"><a href={data.personal.github} target="_blank" rel="noreferrer"><Github/></a><a href={data.personal.linkedin} target="_blank" rel="noreferrer"><Linkedin/></a><button onClick={openEditor} title="Edit portfolio content"><Pencil/></button></div></footer>
+  {editor&&<div className="editor-backdrop"><div className="editor-panel"><div className="editor-head"><div><span className="section-kicker">LOCAL CONTENT STUDIO</span><h2>Manage portfolio</h2><p>Edit your projects, skills, experience, education and achievements as JSON.</p></div><button className="close-editor" onClick={()=>setEditor(false)}><X/></button></div><textarea spellCheck={false} value={draft} onChange={e=>setDraft(e.target.value)}/>{error&&<p className="editor-error">{error}</p>}<div className="editor-actions"><button className="button button-ghost" onClick={resetContent}><RotateCcw size={15}/> Reset</button><button className="button button-primary" onClick={saveEditor}><Save size={15}/> Save changes</button></div><small>Saved in this browser only (localStorage). Export/backup the JSON before clearing browser data. For a public multi-device CMS, connect a database and authentication.</small></div></div>}
+ </main>
 }
+

@@ -1,0 +1,234 @@
+{
+    "personal":  {
+                     "name":  "Surendar Kumar H P",
+                     "firstName":  "Surendar",
+                     "title":  "Software Developer",
+                     "location":  "Bangalore, Karnataka, India",
+                     "phone":  "+91-8971291369",
+                     "email":  "ksuru127@gmail.com",
+                     "github":  "https://github.com/SurendarKumar3",
+                     "linkedin":  "https://linkedin.com/in/surendar-kumar03",
+                     "resume":  "/Surendar_Resume.pdf"
+                 },
+    "summary":  "Full-Stack Software Engineer and Android Developer (GATE 2026 Qualified – CSE) with expertise in Kotlin, Java, Python, React.js, Node.js, Firebase, AWS, and Generative AI integrations. Experienced in building scalable mobile and web applications with offline-first architectures, AI-powered systems, and real-time analytics.",
+    "skills":  [
+                   {
+                       "category":  "Programming Languages",
+                       "items":  [
+                                     "Python",
+                                     "Java",
+                                     "Kotlin",
+                                     "C++",
+                                     "SQL",
+                                     "C"
+                                 ]
+                   },
+                   {
+                       "category":  "Frontend",
+                       "items":  [
+                                     "React.js",
+                                     "TailwindCSS",
+                                     "HTML5",
+                                     "CSS3"
+                                 ]
+                   },
+                   {
+                       "category":  "Backend \u0026 APIs",
+                       "items":  [
+                                     "Node.js",
+                                     "Express.js",
+                                     "Flask",
+                                     "REST APIs"
+                                 ]
+                   },
+                   {
+                       "category":  "Mobile Development",
+                       "items":  [
+                                     "Android SDK",
+                                     "Kotlin",
+                                     "XML",
+                                     "Firebase",
+                                     "Room Database"
+                                 ]
+                   },
+                   {
+                       "category":  "Cloud \u0026 DevOps",
+                       "items":  [
+                                     "AWS",
+                                     "Oracle Cloud",
+                                     "Docker",
+                                     "CI/CD"
+                                 ]
+                   },
+                   {
+                       "category":  "Databases",
+                       "items":  [
+                                     "MySQL",
+                                     "MongoDB",
+                                     "Firebase Firestore",
+                                     "SQLite"
+                                 ]
+                   },
+                   {
+                       "category":  "AI \u0026 Machine Learning",
+                       "items":  [
+                                     "TensorFlow",
+                                     "OpenCV",
+                                     "Machine Learning",
+                                     "Generative AI"
+                                 ]
+                   }
+               ],
+    "experience":  [
+                       {
+                           "role":  "Android Development Intern",
+                           "company":  "MindMatrix",
+                           "date":  "February 2026",
+                           "location":  "India",
+                           "stack":  [
+                                         "Kotlin",
+                                         "Firebase",
+                                         "Generative AI"
+                                     ],
+                           "bullets":  [
+                                           "Developed Android apps using Kotlin, Firebase Auth, Firestore, and Room Database with offline-first sync architecture.",
+                                           "Integrated Generative AI into Android apps; optimized RecyclerView performance and led API integration and debugging."
+                                       ]
+                       }
+                   ],
+    "projects":  [
+                     {
+                         "name":  "Kreeda Prerana Scout",
+                         "subtitle":  "Athlete Scouting \u0026 Performance Tracking App",
+                         "date":  "May 2026",
+                         "description":  "Built a native Android app for athlete scouting with Firebase sync, multilingual support, leaderboards, and analytics dashboards. Implemented offline-first architecture using Room Database with real-time Firestore synchronization and role-based access for scouts, coaches, and administrators.",
+                         "technologies":  [
+                                              "Kotlin",
+                                              "Firebase",
+                                              "Room DB",
+                                              "RecyclerView",
+                                              "Material3"
+                                          ],
+                         "github":  "",
+                         "demo":  "",
+                         "category":  "Mobile"
+                     },
+                     {
+                         "name":  "GPS Attendance Management System",
+                         "subtitle":  "GPS-enabled attendance with geofencing",
+                         "date":  "October 2025",
+                         "description":  "Engineered a geofencing system eliminating 95% fraudulent check-ins; deployed scalable AWS serverless architecture with JWT authentication. Built a real-time attendance dashboard with automated report generation and admin alert notifications.",
+                         "technologies":  [
+                                              "GPS",
+                                              "Geofencing",
+                                              "Android",
+                                              "AWS Lambda",
+                                              "JWT"
+                                          ],
+                         "github":  "",
+                         "demo":  "",
+                         "category":  "Cloud \u0026 Mobile"
+                     },
+                     {
+                         "name":  "E-Shiksha",
+                         "subtitle":  "AI-Powered E-Learning Platform",
+                         "date":  "March 2025",
+                         "description":  "Built an AI recommendation engine improving course completion by 40%; optimized MongoDB queries reducing API response time by 60%. Implemented progress tracking, quiz modules, and instructor dashboard with role-based authentication.",
+                         "technologies":  [
+                                              "React.js",
+                                              "Node.js",
+                                              "MongoDB",
+                                              "Machine Learning"
+                                          ],
+                         "github":  "",
+                         "demo":  "",
+                         "category":  "AI \u0026 Web"
+                     },
+                     {
+                         "name":  "PhishShield",
+                         "subtitle":  "Cybersecurity Threat Detection",
+                         "date":  "November 2024",
+                         "description":  "Developed a phishing detection system with 94% accuracy using real-time URL scanning and anomaly detection for malicious domains. Integrated SSL certificate validation and DNS reputation scoring for multi-layered threat analysis.",
+                         "technologies":  [
+                                              "Python",
+                                              "Flask",
+                                              "DNS Analysis",
+                                              "SSL Validation"
+                                          ],
+                         "github":  "",
+                         "demo":  "",
+                         "category":  "AI \u0026 Security"
+                     }
+                 ],
+    "education":  [
+                      {
+                          "institution":  "RV College of Engineering, Bengaluru",
+                          "degree":  "M.Tech in Computer Science and Engineering",
+                          "date":  "2026 – 2028",
+                          "result":  ""
+                      },
+                      {
+                          "institution":  "Adichunchanagiri Institute of Technology, Chikmagalur",
+                          "degree":  "B.E. in Computer Science",
+                          "date":  "2022 – 2026",
+                          "result":  "CGPA: 9.0/10"
+                      },
+                      {
+                          "institution":  "St. Mary’s PU College, Chikmagalur",
+                          "degree":  "Pre-University Course (PCMC)",
+                          "date":  "2020 – 2022",
+                          "result":  "96.8%"
+                      },
+                      {
+                          "institution":  "St. Mary’s High School, Chikmagalur",
+                          "degree":  "Secondary School (10th Grade)",
+                          "date":  "2019 – 2020",
+                          "result":  "92.32%"
+                      }
+                  ],
+    "certifications":  [
+                           {
+                               "name":  "Salesforce Certified Agentforce Specialist",
+                               "issuer":  "Salesforce",
+                               "date":  ""
+                           },
+                           {
+                               "name":  "AWS Academy Cloud Architecting",
+                               "issuer":  "AWS Academy",
+                               "date":  ""
+                           },
+                           {
+                               "name":  "Oracle Cloud AI Foundations",
+                               "issuer":  "Oracle",
+                               "date":  ""
+                           },
+                           {
+                               "name":  "Big Data Computing – Elite",
+                               "issuer":  "NPTEL",
+                               "date":  ""
+                           },
+                           {
+                               "name":  "Python Data Science – Elite",
+                               "issuer":  "NPTEL",
+                               "date":  ""
+                           }
+                       ],
+    "achievements":  [
+                         {
+                             "title":  "GATE 2026 Qualified",
+                             "detail":  "Computer Science \u0026 Engineering · AIR 13656"
+                         },
+                         {
+                             "title":  "Tech Tank 2025",
+                             "detail":  "RV College of Engineering · Top 5%"
+                         },
+                         {
+                             "title":  "Sentinel Hack 5.0",
+                             "detail":  "AI \u0026 Cybersecurity Winner"
+                         },
+                         {
+                             "title":  "hackCSE-erate",
+                             "detail":  "Top 10"
+                         }
+                     ]
+}

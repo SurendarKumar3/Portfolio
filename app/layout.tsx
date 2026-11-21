@@ -1,42 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
+export const metadata: Metadata = { title: "Surendar Kumar H P | Software Engineer Portfolio", description: "Portfolio of Surendar Kumar H P — Software Developer specializing in web development, Android applications, AI/ML and Cloud Technologies.", keywords: ["Surendar Kumar H P","Software Engineer","Android Developer","AI/ML","Full Stack Developer"], authors:[{name:"Surendar Kumar H P"}] };
+export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body>{children}</body></html>}
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-export const metadata: Metadata = {
-  title: "Surendar Kumar H P - Portfolio",
-  description: "Computer Science Engineering Student | Full Stack Developer - Portfolio showcasing my projects, skills, certifications, and hackathon achievements",
-  keywords: ["portfolio", "developer", "computer science", "full stack", "AI", "ML", "cybersecurity", "Surendar Kumar", "hackathon"],
-  authors: [{ name: "Surendar Kumar H P" }],
-  openGraph: {
-    title: "Surendar Kumar H P - Portfolio",
-    description: "Computer Science Engineering Student | Full Stack Developer",
-    type: "website",
-  },
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange={false}
-        >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  );
-}
